@@ -98,7 +98,7 @@
             // Build request parameters
             var req = request.parse(self.path());
             // Check if matches are found
-            if (req.match) {
+            if (req && req.match) {
                 // Match found
                 var extra = {
                     route: route,
@@ -386,6 +386,9 @@
      * @return {Object} req
      */
     Request.prototype.parse = function(path) {
+        if (!path) {
+            return;
+        }
         var match = path.match(this.regex),
             self = this;
 
